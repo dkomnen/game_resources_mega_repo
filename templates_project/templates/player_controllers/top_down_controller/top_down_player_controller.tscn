@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://n3jnuw0sbiff"]
+
+[ext_resource type="Script" path="res://templates/player_controllers/top_down_controller/top_down_player_controller.gd" id="1_78aog"]
+
+[node name="TopDownPlayerController" type="Node2D"]
+script = ExtResource("1_78aog")

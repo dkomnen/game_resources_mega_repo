@@ -1,3 +1,7 @@
 2a60927148abd1d33b818b535e306557
-::res://::1677876209
+::res://::1677876825
 icon.svg::CompressedTexture2D::4709754129996701449::1677876207::1677876210::1::::<><>::
+::res://scenes/::1677876816
+main.tscn::PackedScene::7367682249878750422::1677876816::0::1::::<><>::
+::res://templates/::1677876843
+::res://templates/player_controllers/::1677876843
