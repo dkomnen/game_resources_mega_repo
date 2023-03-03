@@ -1,6 +1,6 @@
 extends Node
 
-const keymaps_path = "res://keymaps.dat"
+const keymaps_path = "user://keymaps.dat"
 var keymaps: Dictionary
 
 
@@ -10,6 +10,7 @@ func _ready() -> void:
 	for action in InputMap.get_actions():
 		if InputMap.action_get_events(action).size() != 0:
 			keymaps[action] = InputMap.action_get_events(action)[0]
+			print(InputMap.action_get_events(action)[0].as_text())
 	load_keymap()
 
 
@@ -18,9 +19,7 @@ func load_keymap() -> void:
 		save_keymap() # There is no save file yet, so let's create one.
 		return
 	var file = FileAccess.open(keymaps_path, FileAccess.READ)
-	# var test = file.get_var()
-	var temp_keymap = file.get_var()
-	print(temp_keymap)
+	var temp_keymap = file.get_var(true) as Dictionary
 	file.close()
 	# We don't just replace the keymaps dictionary, because if you
 	# updated your game and removed/added keymaps, the data of this
@@ -38,6 +37,6 @@ func load_keymap() -> void:
 func save_keymap() -> void:
 	# For saving the keymap, we just save the entire dictionary as a var.
 	var file = FileAccess.open(keymaps_path, FileAccess.WRITE)
-	file.store_var(keymaps)
-	file.store_var({"a":1, "b":2})
+	file.store_var(keymaps, true)
+	# file.store_var({"a":1, "b":2})
 	file.close()
