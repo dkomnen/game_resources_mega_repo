@@ -9,9 +9,11 @@ size = Vector2(128, 64)
 [node name="top_down_test" type="Node2D"]
 
 [node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+position = Vector2(1, 1)
 motion_mode = 1
 script = ExtResource("1_ynpkk")
-movement_speed = 6657
+movement_speed = 200.0
+accelleration = 0.5
 
 [node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D"]
 texture = ExtResource("2_pi7co")

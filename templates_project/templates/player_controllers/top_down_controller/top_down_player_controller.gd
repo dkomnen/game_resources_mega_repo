@@ -1,23 +1,18 @@
 extends CharacterBody2D
 
-@export var movement_speed = 100
+@export var movement_speed: float = 100
+@export_range(0, 1, 0.01) var accelleration: float = 0.1
 
-func _physics_process(delta):
-	if Input.is_action_pressed("ui_left"):
-		velocity.x = -1
-	elif Input.is_action_pressed("ui_right"):
-		velocity.x = 1
-	else:
-		velocity.x = 0
-	
-	if Input.is_action_pressed("ui_up"):
-		velocity.y = -1
-	elif Input.is_action_pressed("ui_down"):
-		velocity.y = 1
-	else:
-		velocity.y = 0
-	
+var direction = Vector2()
 
-	velocity = velocity.normalized() * movement_speed
+func _physics_process(_delta):
+	var input = Vector2.ZERO
+	input.x = Input.get_axis("ui_left", "ui_right")
+	input.y =  Input.get_axis("ui_up", "ui_down")
+
+	direction = direction.lerp(input, accelleration)
+	velocity = direction.normalized() * movement_speed
+
+	print(velocity)
 
 	move_and_slide()
