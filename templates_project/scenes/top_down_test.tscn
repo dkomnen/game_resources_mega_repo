@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://b7ule7m5sevrx"]
+[gd_scene load_steps=4 format=3 uid="uid://k6kitbeodgt6"]
 
 [ext_resource type="Script" path="res://templates/player_controllers/top_down_controller/top_down_player_controller.gd" id="1_ynpkk"]
 [ext_resource type="Texture2D" uid="uid://b8do7ys37vb74" path="res://icon.svg" id="2_pi7co"]

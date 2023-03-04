@@ -1,0 +1,20 @@
+[gd_scene load_steps=2 format=3 uid="uid://bmknmhbckc83x"]
+
+[ext_resource type="Script" path="res://templates/ui_elements/main_menu_screen/remap_box.gd" id="1_5bbcn"]
+
+[node name="RemapBox" type="HBoxContainer"]
+script = ExtResource("1_5bbcn")
+
+[node name="InputMapLabel" type="Label" parent="."]
+custom_minimum_size = Vector2(120, 0)
+layout_mode = 2
+size_flags_horizontal = 2
+text = "Label"
+
+[node name="RemapButton" type="Button" parent="."]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+size_flags_horizontal = 10
+text = "UP ARROW"
+
+[connection signal="pressed" from="RemapButton" to="." method="_on_remap_button_pressed"]

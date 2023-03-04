@@ -1,0 +1,144 @@
+[gd_scene load_steps=3 format=3 uid="uid://bjxttqkx1lghe"]
+
+[ext_resource type="Script" path="res://templates/ui_elements/main_menu_screen/InputRemapping.gd" id="1_sx5g8"]
+[ext_resource type="PackedScene" uid="uid://bmknmhbckc83x" path="res://templates/ui_elements/main_menu_screen/remap_box.tscn" id="2_ypegs"]
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_stretch_ratio = 0.0
+
+[node name="StartOptions" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchor_left = 0.3
+anchor_top = 0.5
+anchor_right = 0.7
+anchor_bottom = 0.8
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="StartOptions"]
+self_modulate = Color(1, 1, 1, 0.654902)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="StartGameBtn" type="Button" parent="StartOptions"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.2
+anchor_top = 0.1
+anchor_right = 0.8
+anchor_bottom = 0.3
+text = "Start Game"
+
+[node name="OptionsBtn" type="Button" parent="StartOptions"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.2
+anchor_top = 0.35
+anchor_right = 0.8
+anchor_bottom = 0.55
+text = "Options"
+
+[node name="ExitGameBtn" type="Button" parent="StartOptions"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.2
+anchor_top = 0.6
+anchor_right = 0.8
+anchor_bottom = 0.8
+text = "Exit Game"
+
+[node name="OptionsScreen" type="Control" parent="."]
+layout_mode = 1
+anchor_left = 0.1
+anchor_top = 0.1
+anchor_right = 0.9
+anchor_bottom = 0.9
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="OptionsScreen"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VSeparator" type="VSeparator" parent="OptionsScreen"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.2
+anchor_right = 0.2
+anchor_bottom = 1.0
+offset_left = 0.479996
+offset_top = -0.800003
+offset_right = 4.48
+offset_bottom = -0.799988
+
+[node name="OptionsSubMenus" type="Control" parent="OptionsScreen"]
+layout_mode = 1
+anchor_right = 0.2
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Controls" type="Button" parent="OptionsScreen/OptionsSubMenus"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.1
+anchor_top = 0.05
+anchor_right = 0.9
+anchor_bottom = 0.15
+text = "Controls"
+
+[node name="GameSettings" type="Button" parent="OptionsScreen/OptionsSubMenus"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.1
+anchor_top = 0.2
+anchor_right = 0.9
+anchor_bottom = 0.3
+text = "Game Settings"
+
+[node name="OptionWindow" type="Control" parent="OptionsScreen"]
+layout_mode = 1
+anchor_left = 0.2
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="InputRemapping" type="Control" parent="OptionsScreen/OptionWindow"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_sx5g8")
+remap_box = ExtResource("2_ypegs")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="OptionsScreen/OptionWindow/InputRemapping"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.1
+anchor_top = 0.05
+anchor_right = 0.9
+anchor_bottom = 0.95
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="OptionsScreen/OptionWindow/InputRemapping/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+alignment = 1
