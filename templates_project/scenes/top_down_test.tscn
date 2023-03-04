@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://k6kitbeodgt6"]
+[gd_scene load_steps=4 format=3 uid="uid://b7ule7m5sevrx"]
 
 [ext_resource type="Script" path="res://templates/player_controllers/top_down_controller/top_down_player_controller.gd" id="1_ynpkk"]
 [ext_resource type="Texture2D" uid="uid://b8do7ys37vb74" path="res://icon.svg" id="2_pi7co"]
@@ -12,7 +12,7 @@ size = Vector2(128, 64)
 position = Vector2(1, 1)
 motion_mode = 1
 script = ExtResource("1_ynpkk")
-movement_speed = 500.0
+movement_speed = 250.0
 accelleration = 10.0
 
 [node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D"]

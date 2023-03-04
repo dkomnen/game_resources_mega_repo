@@ -1,3 +1,6 @@
-[gd_scene format=3 uid="uid://dkraxinxftj7b"]
+[gd_scene load_steps=2 format=3 uid="uid://dkraxinxftj7b"]
+
+[ext_resource type="Script" path="res://templates/turn_based_battle/turn_based_battle.gd" id="1_fmbrf"]
 
 [node name="turn_based_battle" type="Node2D"]
+script = ExtResource("1_fmbrf")
