@@ -6,13 +6,9 @@ extends CharacterBody2D
 var direction = Vector2()
 
 func _physics_process(_delta):
-	var input = Vector2.ZERO
-	input.x = Input.get_axis("ui_left", "ui_right")
-	input.y =  Input.get_axis("ui_up", "ui_down")
+	direction.x = Input.get_axis("ui_left", "ui_right")
+	direction.y =  Input.get_axis("ui_up", "ui_down")
 
-	direction = direction.lerp(input, accelleration)
-	velocity = direction.normalized() * movement_speed
-
-	print(velocity)
+	velocity = velocity.lerp(direction.normalized() * movement_speed, accelleration)
 
 	move_and_slide()
