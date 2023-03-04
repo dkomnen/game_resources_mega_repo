@@ -133,7 +133,7 @@ anchors_preset = -1
 anchor_left = 0.1
 anchor_top = 0.05
 anchor_right = 0.9
-anchor_bottom = 0.95
+anchor_bottom = 0.85
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -142,3 +142,14 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 alignment = 1
+
+[node name="ResetControlsButton" type="Button" parent="OptionsScreen/OptionWindow/InputRemapping"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.75
+anchor_top = 0.9
+anchor_right = 0.95
+anchor_bottom = 0.95
+text = "Reset to defaults"
+
+[connection signal="pressed" from="OptionsScreen/OptionWindow/InputRemapping/ResetControlsButton" to="OptionsScreen/OptionWindow/InputRemapping" method="_on_reset_controls_button_pressed"]
