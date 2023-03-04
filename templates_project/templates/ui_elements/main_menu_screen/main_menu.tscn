@@ -1,7 +1,32 @@
-[gd_scene load_steps=3 format=3 uid="uid://bjxttqkx1lghe"]
+[gd_scene load_steps=11 format=3 uid="uid://bjxttqkx1lghe"]
 
+[ext_resource type="Script" path="res://templates/ui_elements/main_menu_screen/start_options.gd" id="1_khljk"]
 [ext_resource type="Script" path="res://templates/ui_elements/main_menu_screen/InputRemapping.gd" id="1_sx5g8"]
+[ext_resource type="Script" path="res://templates/ui_elements/main_menu_screen/options_sub_menu.gd" id="2_8mrvj"]
 [ext_resource type="PackedScene" uid="uid://bmknmhbckc83x" path="res://templates/ui_elements/main_menu_screen/remap_box.tscn" id="2_ypegs"]
+
+[sub_resource type="Gradient" id="Gradient_s48gu"]
+colors = PackedColorArray(0, 0, 0, 1, 0.227451, 1, 1, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_tu7ud"]
+noise_type = 0
+fractal_type = 2
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_v5xb1"]
+color_ramp = SubResource("Gradient_s48gu")
+noise = SubResource("FastNoiseLite_tu7ud")
+
+[sub_resource type="Gradient" id="Gradient_y3vgq"]
+offsets = PackedFloat32Array(0, 0.658065, 1)
+colors = PackedColorArray(0.0196078, 0.0196078, 0.223529, 1, 0, 0.0117647, 0.470588, 1, 0.00389869, 0, 0.694716, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_apd74"]
+noise_type = 5
+frequency = 0.02
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_r72iw"]
+color_ramp = SubResource("Gradient_y3vgq")
+noise = SubResource("FastNoiseLite_apd74")
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -12,8 +37,33 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_stretch_ratio = 0.0
 
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("NoiseTexture2D_v5xb1")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.4
+anchor_right = 0.5
+anchor_bottom = 0.4
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_constants/shadow_outline_size = 3
+theme_override_font_sizes/font_size = 32
+text = "GAME TITLE"
+horizontal_alignment = 1
+
 [node name="StartOptions" type="Control" parent="."]
-visible = false
 layout_mode = 1
 anchor_left = 0.3
 anchor_top = 0.5
@@ -21,6 +71,7 @@ anchor_right = 0.7
 anchor_bottom = 0.8
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_khljk")
 
 [node name="Panel" type="Panel" parent="StartOptions"]
 self_modulate = Color(1, 1, 1, 0.654902)
@@ -59,6 +110,7 @@ anchor_bottom = 0.8
 text = "Exit Game"
 
 [node name="OptionsScreen" type="Control" parent="."]
+visible = false
 layout_mode = 1
 anchor_left = 0.1
 anchor_top = 0.1
@@ -67,13 +119,15 @@ anchor_bottom = 0.9
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Panel" type="Panel" parent="OptionsScreen"]
+[node name="OptionsBackground" type="TextureRect" parent="OptionsScreen"]
+self_modulate = Color(1, 1, 1, 0.878431)
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+texture = SubResource("NoiseTexture2D_r72iw")
 
 [node name="VSeparator" type="VSeparator" parent="OptionsScreen"]
 layout_mode = 1
@@ -92,6 +146,7 @@ anchor_right = 0.2
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("2_8mrvj")
 
 [node name="Controls" type="Button" parent="OptionsScreen/OptionsSubMenus"]
 layout_mode = 1
@@ -111,6 +166,15 @@ anchor_right = 0.9
 anchor_bottom = 0.3
 text = "Game Settings"
 
+[node name="ExitOptionsBtn" type="Button" parent="OptionsScreen/OptionsSubMenus"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.1
+anchor_top = 0.8
+anchor_right = 0.9
+anchor_bottom = 0.9
+text = "Exit Options"
+
 [node name="OptionWindow" type="Control" parent="OptionsScreen"]
 layout_mode = 1
 anchor_left = 0.2
@@ -118,6 +182,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 
 [node name="InputRemapping" type="Control" parent="OptionsScreen/OptionWindow"]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -150,6 +215,52 @@ anchor_left = 0.75
 anchor_top = 0.9
 anchor_right = 0.95
 anchor_bottom = 0.95
+focus_mode = 0
 text = "Reset to defaults"
 
+[node name="GameSettings" type="Control" parent="OptionsScreen/OptionWindow"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="OptionsScreen/OptionWindow/GameSettings"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.1
+anchor_top = 0.1
+anchor_right = 0.9
+anchor_bottom = 0.9
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="OptionsScreen/OptionWindow/GameSettings/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="OptionsScreen/OptionWindow/GameSettings/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Some random option"
+
+[node name="CheckButton" type="CheckButton" parent="OptionsScreen/OptionWindow/GameSettings/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="OptionsScreen/OptionWindow/GameSettings/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="OptionsScreen/OptionWindow/GameSettings/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+text = "Some other option"
+
+[node name="CheckButton" type="CheckButton" parent="OptionsScreen/OptionWindow/GameSettings/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+
+[connection signal="button_up" from="StartOptions/StartGameBtn" to="StartOptions" method="_on_start_game_btn_button_up"]
+[connection signal="button_up" from="StartOptions/OptionsBtn" to="StartOptions" method="_on_options_btn_button_up"]
+[connection signal="button_up" from="StartOptions/ExitGameBtn" to="StartOptions" method="_on_exit_game_btn_button_up"]
+[connection signal="button_up" from="OptionsScreen/OptionsSubMenus/Controls" to="OptionsScreen/OptionsSubMenus" method="_on_submenu_button_up" binds= [0]]
+[connection signal="button_up" from="OptionsScreen/OptionsSubMenus/GameSettings" to="OptionsScreen/OptionsSubMenus" method="_on_submenu_button_up" binds= [1]]
+[connection signal="button_up" from="OptionsScreen/OptionsSubMenus/ExitOptionsBtn" to="StartOptions" method="_on_exit_options_btn_button_up"]
 [connection signal="pressed" from="OptionsScreen/OptionWindow/InputRemapping/ResetControlsButton" to="OptionsScreen/OptionWindow/InputRemapping" method="_on_reset_controls_button_pressed"]
