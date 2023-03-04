@@ -1,4 +1,6 @@
-[gd_scene format=3 uid="uid://byksilgu225ll"]
+[gd_scene load_steps=2 format=3 uid="uid://byksilgu225ll"]
+
+[ext_resource type="PackedScene" uid="uid://ceuwitdp7a785" path="res://templates/turn_based_battle/character_stats_panel.tscn" id="1_epcww"]
 
 [node name="turn_based_ui" type="Control"]
 layout_mode = 3
@@ -18,16 +20,20 @@ offset_top = -192.0
 grow_horizontal = 2
 grow_vertical = 0
 
-[node name="AllyPanel" type="PanelContainer" parent="."]
-layout_mode = 0
-offset_right = 256.0
-offset_bottom = 128.0
+[node name="Button" type="Button" parent="BottomPanel"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+text = "Attack"
 
-[node name="EnemyPanel" type="PanelContainer" parent="."]
+[node name="CharacterStatsPanel" parent="." instance=ExtResource("1_epcww")]
+layout_mode = 1
+
+[node name="CharacterStatsPanel2" parent="." instance=ExtResource("1_epcww")]
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
 offset_left = -256.0
-offset_bottom = 128.0
+offset_right = 0.0
 grow_horizontal = 0

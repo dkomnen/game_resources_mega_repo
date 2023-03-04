@@ -1,13 +1,18 @@
 class_name State
 extends Node
 
-func enter() -> void:
+var state_machine
+
+func initialize(_state_machine) -> void:
+    state_machine = _state_machine
+
+func enter(_msg : Dictionary = {}) -> void:
     pass
 
-func update(delta: float) -> void:
+func update(_delta: float) -> void:
     pass
 
-func physics_update(delta: float) -> void:
+func physics_update(_delta: float) -> void:
     pass
 
 func exit() -> void:
