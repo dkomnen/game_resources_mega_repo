@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://ceuwitdp7a785"]
+[gd_scene format=3 uid="uid://cwdtjx0pfaujs"]
 
 [node name="CharacterStatsPanel" type="PanelContainer"]
 offset_right = 256.0

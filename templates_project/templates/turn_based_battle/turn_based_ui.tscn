@@ -1,6 +1,6 @@
-[gd_scene load_steps=2 format=3 uid="uid://byksilgu225ll"]
+[gd_scene load_steps=2 format=3 uid="uid://dg77pyad2ajlv"]
 
-[ext_resource type="PackedScene" uid="uid://ceuwitdp7a785" path="res://templates/turn_based_battle/character_stats_panel.tscn" id="1_epcww"]
+[ext_resource type="PackedScene" path="res://templates/turn_based_battle/character_stats_panel.tscn" id="1_epcww"]
 
 [node name="turn_based_ui" type="Control"]
 layout_mode = 3

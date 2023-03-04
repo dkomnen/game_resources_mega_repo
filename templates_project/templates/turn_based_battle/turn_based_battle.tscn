@@ -1,12 +1,17 @@
-[gd_scene load_steps=3 format=3 uid="uid://dkraxinxftj7b"]
+[gd_scene load_steps=4 format=3 uid="uid://qvej6bniduo1"]
 
 [ext_resource type="Script" path="res://templates/turn_based_battle/state_machine.gd" id="1_7h2uo"]
-[ext_resource type="PackedScene" uid="uid://byksilgu225ll" path="res://templates/turn_based_battle/turn_based_ui.tscn" id="2_8gyqt"]
+[ext_resource type="PackedScene" path="res://templates/turn_based_battle/turn_based_ui.tscn" id="2_8gyqt"]
+[ext_resource type="Script" path="res://templates/turn_based_battle/states/player_turn_state.gd" id="2_ohr1j"]
 
 [node name="turn_based_battle" type="Node2D"]
 
-[node name="StateMachine" type="Node" parent="."]
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
 script = ExtResource("1_7h2uo")
+initial_state = NodePath("PlayerTurnState")
+
+[node name="PlayerTurnState" type="Node" parent="StateMachine"]
+script = ExtResource("2_ohr1j")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 follow_viewport_scale = 0.001
