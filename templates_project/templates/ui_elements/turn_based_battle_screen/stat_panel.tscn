@@ -1,0 +1,27 @@
+[gd_scene load_steps=2 format=3 uid="uid://b7pkul5i37em7"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_4er1o"]
+font_size = 24
+
+[node name="StatPanel" type="PanelContainer"]
+anchors_preset = -1
+anchor_right = 0.25
+anchor_bottom = 0.1
+size_flags_vertical = 3
+metadata/_edit_use_anchors_ = true
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+text = "Stat Name"
+label_settings = SubResource("LabelSettings_4er1o")
+uppercase = true
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+size_flags_vertical = 8
+max_value = 1.0
+value = 0.75
+show_percentage = false

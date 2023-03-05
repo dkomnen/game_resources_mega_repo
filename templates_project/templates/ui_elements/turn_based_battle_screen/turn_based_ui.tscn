@@ -1,7 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://dg77pyad2ajlv"]
+[gd_scene load_steps=3 format=3 uid="uid://b2g3j8j4ludbi"]
 
-[ext_resource type="PackedScene" uid="uid://cwdtjx0pfaujs" path="res://templates/turn_based_battle/character_stats_panel.tscn" id="1_epcww"]
-[ext_resource type="Script" path="res://templates/turn_based_battle/turn_based_ui.gd" id="1_vo06i"]
+[ext_resource type="PackedScene" uid="uid://cwdtjx0pfaujs" path="res://templates/ui_elements/turn_based_battle_screen/character_stats_panel.tscn" id="1_epcww"]
+[ext_resource type="Script" path="res://templates/ui_elements/turn_based_battle_screen/turn_based_ui.gd" id="1_vo06i"]
 
 [node name="turn_based_ui" type="Control"]
 layout_mode = 3
@@ -39,17 +39,12 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 text = "End Turn"
 
-[node name="CharacterStatsPanel" parent="." instance=ExtResource("1_epcww")]
+[node name="PlayerStatsPanel" parent="." instance=ExtResource("1_epcww")]
 layout_mode = 1
 
-[node name="CharacterStatsPanel2" parent="." instance=ExtResource("1_epcww")]
+[node name="EnemyStatsPanel" parent="." instance=ExtResource("1_epcww")]
+layout_direction = 3
 layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -256.0
-offset_right = 0.0
-grow_horizontal = 0
 
 [connection signal="pressed" from="BottomPanel/HBoxContainer/AttackButton" to="." method="_on_attack_button_pressed"]
 [connection signal="pressed" from="BottomPanel/HBoxContainer/EndTurnButton" to="." method="_on_end_turn_button_pressed"]

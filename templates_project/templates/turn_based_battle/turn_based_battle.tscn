@@ -1,9 +1,23 @@
-[gd_scene load_steps=5 format=3 uid="uid://qvej6bniduo1"]
+[gd_scene load_steps=9 format=3 uid="uid://dvg7mnxbsxryc"]
 
 [ext_resource type="Script" path="res://templates/turn_based_battle/state_machine.gd" id="1_7h2uo"]
-[ext_resource type="PackedScene" uid="uid://dg77pyad2ajlv" path="res://templates/turn_based_battle/turn_based_ui.tscn" id="2_8gyqt"]
+[ext_resource type="PackedScene" uid="uid://b2g3j8j4ludbi" path="res://templates/ui_elements/turn_based_battle_screen/turn_based_ui.tscn" id="2_8gyqt"]
 [ext_resource type="Script" path="res://templates/turn_based_battle/states/player_turn_state.gd" id="2_ohr1j"]
 [ext_resource type="Script" path="res://templates/turn_based_battle/states/enemy_turn_state.gd" id="3_anlmf"]
+[ext_resource type="PackedScene" uid="uid://bn6xtggvl7vxf" path="res://templates/character/Character.tscn" id="5_ur351"]
+[ext_resource type="Script" path="res://templates/character/character_stats.gd" id="6_6fsyy"]
+
+[sub_resource type="Resource" id="Resource_aibii"]
+resource_local_to_scene = true
+script = ExtResource("6_6fsyy")
+health = 100.0
+energy = 50.0
+
+[sub_resource type="Resource" id="Resource_4n3hr"]
+resource_local_to_scene = true
+script = ExtResource("6_6fsyy")
+health = 50.0
+energy = 25.0
 
 [node name="turn_based_battle" type="Node2D"]
 
@@ -20,6 +34,14 @@ script = ExtResource("3_anlmf")
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 follow_viewport_scale = 0.001
 
-[node name="turn_based_ui" parent="CanvasLayer" instance=ExtResource("2_8gyqt")]
+[node name="turn_based_ui" parent="CanvasLayer" node_paths=PackedStringArray("player", "enemy") instance=ExtResource("2_8gyqt")]
+player = NodePath("../../Player")
+enemy = NodePath("../../Enemy")
+
+[node name="Player" parent="." instance=ExtResource("5_ur351")]
+metadata/Stats = SubResource("Resource_aibii")
+
+[node name="Enemy" parent="." instance=ExtResource("5_ur351")]
+metadata/Stats = SubResource("Resource_4n3hr")
 
 [connection signal="ended_turn" from="CanvasLayer/turn_based_ui" to="StateMachine" method="_on_turn_based_ui_ended_turn"]
