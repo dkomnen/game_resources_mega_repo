@@ -22,6 +22,7 @@ func set_character_stats() -> void:
 	if player is Node:
 		var player_stats = player.get_meta('Stats')
 		player_stats_panel.set_stats(player_stats)
-
-	# if enemy is Node:
-	# 	enemy_stats_panel.set_stats(enemy.get_meta('Stats'))
+	
+	if enemy is Node:
+		var enemy_stats = enemy.get_meta('Stats')
+		enemy_stats_panel.set_stats(enemy_stats)

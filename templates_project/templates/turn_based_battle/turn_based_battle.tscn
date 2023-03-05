@@ -7,13 +7,13 @@
 [ext_resource type="PackedScene" uid="uid://bn6xtggvl7vxf" path="res://templates/character/Character.tscn" id="5_ur351"]
 [ext_resource type="Script" path="res://templates/character/character_stats.gd" id="6_6fsyy"]
 
-[sub_resource type="Resource" id="Resource_aibii"]
+[sub_resource type="Resource" id="Resource_8ut27"]
 resource_local_to_scene = true
 script = ExtResource("6_6fsyy")
 health = 100.0
 energy = 50.0
 
-[sub_resource type="Resource" id="Resource_4n3hr"]
+[sub_resource type="Resource" id="Resource_4gevm"]
 resource_local_to_scene = true
 script = ExtResource("6_6fsyy")
 health = 50.0
@@ -39,9 +39,9 @@ player = NodePath("../../Player")
 enemy = NodePath("../../Enemy")
 
 [node name="Player" parent="." instance=ExtResource("5_ur351")]
-metadata/Stats = SubResource("Resource_aibii")
+metadata/Stats = SubResource("Resource_8ut27")
 
 [node name="Enemy" parent="." instance=ExtResource("5_ur351")]
-metadata/Stats = SubResource("Resource_4n3hr")
+metadata/Stats = SubResource("Resource_4gevm")
 
 [connection signal="ended_turn" from="CanvasLayer/turn_based_ui" to="StateMachine" method="_on_turn_based_ui_ended_turn"]

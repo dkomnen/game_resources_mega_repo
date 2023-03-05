@@ -1,6 +1,10 @@
-[gd_scene load_steps=2 format=3 uid="uid://b7pkul5i37em7"]
+[gd_scene load_steps=3 format=3 uid="uid://b7pkul5i37em7"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_4er1o"]
+font_size = 24
+
+[sub_resource type="LabelSettings" id="LabelSettings_jfrou"]
+line_spacing = 0.0
 font_size = 24
 
 [node name="StatPanel" type="PanelContainer"]
@@ -25,3 +29,15 @@ size_flags_vertical = 8
 max_value = 1.0
 value = 0.75
 show_percentage = false
+
+[node name="Label" type="Label" parent="ProgressBar"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "999 / 999"
+label_settings = SubResource("LabelSettings_jfrou")
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true

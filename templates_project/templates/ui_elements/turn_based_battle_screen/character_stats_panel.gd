@@ -13,9 +13,11 @@ func set_stats(stats: CharacterStats):
 
 		var label: Label = stat_panel.get_node("Label")
 		var progress_bar: ProgressBar = stat_panel.get_node("ProgressBar")
+		var progress_label: Label = progress_bar.get_node("Label")
 
 		label.set_text(stat)
 		progress_bar.set_max(stats_dict[stat])
 		progress_bar.set_value(progress_bar.get_max())
+		progress_label.set_text(str(progress_bar.get_value()) + " / " + str(progress_bar.get_max()))
 
 		$VBoxContainer.add_child(stat_panel)
