@@ -7,20 +7,23 @@ signal transitioned(state_name)
 @onready var current_state: State = initial_state
 
 func _ready() -> void:
-    for child in get_children():
-        child.initialize(self)
-    current_state.enter()
+	for child in get_children():
+		child.initialize(self)
+	current_state.enter()
 
 func _process(delta: float):
-    current_state.update(delta)
+	current_state.update(delta)
  
 func _physics_process(delta: float) -> void:
-    current_state.physics_update(delta)
+	current_state.physics_update(delta)
 
 func switch_state(new_state_name: String, msg: Dictionary = {}) -> void:
-    
-    
-    current_state.exit()
-    current_state = get_node(new_state_name)
-    current_state.enter(msg)
-    transitioned.emit(current_state.name)
+	
+	current_state.exit()
+	current_state = get_node(new_state_name)
+	current_state.enter(msg)
+	transitioned.emit(new_state_name)
+
+
+func _on_turn_based_ui_ended_turn() -> void:
+	current_state.on_turn_ended()

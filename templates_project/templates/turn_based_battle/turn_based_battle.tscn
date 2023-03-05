@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://qvej6bniduo1"]
+[gd_scene load_steps=5 format=3 uid="uid://qvej6bniduo1"]
 
 [ext_resource type="Script" path="res://templates/turn_based_battle/state_machine.gd" id="1_7h2uo"]
-[ext_resource type="PackedScene" path="res://templates/turn_based_battle/turn_based_ui.tscn" id="2_8gyqt"]
+[ext_resource type="PackedScene" uid="uid://dg77pyad2ajlv" path="res://templates/turn_based_battle/turn_based_ui.tscn" id="2_8gyqt"]
 [ext_resource type="Script" path="res://templates/turn_based_battle/states/player_turn_state.gd" id="2_ohr1j"]
+[ext_resource type="Script" path="res://templates/turn_based_battle/states/enemy_turn_state.gd" id="3_anlmf"]
 
 [node name="turn_based_battle" type="Node2D"]
 
@@ -13,7 +14,12 @@ initial_state = NodePath("PlayerTurnState")
 [node name="PlayerTurnState" type="Node" parent="StateMachine"]
 script = ExtResource("2_ohr1j")
 
+[node name="EnemyTurnState" type="Node" parent="StateMachine"]
+script = ExtResource("3_anlmf")
+
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 follow_viewport_scale = 0.001
 
 [node name="turn_based_ui" parent="CanvasLayer" instance=ExtResource("2_8gyqt")]
+
+[connection signal="ended_turn" from="CanvasLayer/turn_based_ui" to="StateMachine" method="_on_turn_based_ui_ended_turn"]

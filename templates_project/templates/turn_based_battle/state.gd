@@ -15,5 +15,8 @@ func update(_delta: float) -> void:
 func physics_update(_delta: float) -> void:
     pass
 
+func on_turn_ended() -> void:
+    pass
+
 func exit() -> void:
     pass
