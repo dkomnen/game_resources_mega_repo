@@ -1,3 +1,9 @@
-[gd_scene format=3 uid="uid://ia7iy2khibfx"]
+[gd_scene load_steps=2 format=3 uid="uid://ia7iy2khibfx"]
+
+[ext_resource type="PackedScene" uid="uid://bont1juejtf60" path="res://entities/music_composer/composer.tscn" id="1_f73af"]
 
 [node name="Main" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+
+[node name="Composer" parent="Sprite2D" instance=ExtResource("1_f73af")]
