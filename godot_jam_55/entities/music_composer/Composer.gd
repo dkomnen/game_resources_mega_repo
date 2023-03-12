@@ -15,7 +15,6 @@ func _ready():
 		current_streams[track] = track.initial_stream
 		track.initial_stream.set_volume_db(track.initial_stream.previous_volume)
 		
-	play_all_tracks()
 
 func crossfade(stream_out: AudioStreamPlayer2D, stream_in: AudioStreamPlayer2D):
 	var tween_out = create_tween()

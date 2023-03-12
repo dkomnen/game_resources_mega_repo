@@ -8,9 +8,10 @@
 [node name="Composer" parent="." instance=ExtResource("1_ypfqa")]
 crossfade_floor = -40.0
 
-[node name="UI" type="CanvasLayer" parent="." node_paths=PackedStringArray("dropdowns_parent")]
+[node name="UI" type="CanvasLayer" parent="." node_paths=PackedStringArray("dropdowns_parent", "toggles_parent")]
 script = ExtResource("2_7f7ts")
-dropdowns_parent = NodePath("PanelContainer/VBoxContainer/CenterContainer/HBoxContainer")
+dropdowns_parent = NodePath("PanelContainer/VBoxContainer/CenterContainer/Dropdowns")
+toggles_parent = NodePath("PanelContainer/VBoxContainer/CenterContainer2/Toggles")
 
 [node name="PanelContainer" type="PanelContainer" parent="UI"]
 anchors_preset = 15
@@ -27,10 +28,15 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="HBoxContainer" type="HBoxContainer" parent="UI/PanelContainer/VBoxContainer/CenterContainer"]
+[node name="Dropdowns" type="HBoxContainer" parent="UI/PanelContainer/VBoxContainer/CenterContainer"]
 layout_mode = 2
+size_flags_vertical = 2
+
+[node name="CenterContainer2" type="CenterContainer" parent="UI/PanelContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="UI/PanelContainer/VBoxContainer"]
+[node name="Toggles" type="HBoxContainer" parent="UI/PanelContainer/VBoxContainer/CenterContainer2"]
 layout_mode = 2
 size_flags_vertical = 3
