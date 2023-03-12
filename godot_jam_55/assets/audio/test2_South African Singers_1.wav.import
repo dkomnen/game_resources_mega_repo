@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://bwenrp31ji4f4"
+path="res://.godot/imported/test2_South African Singers_1.wav-df3592a44766dd71dd2b58d892d20a5c.sample"
+
+[deps]
+
+source_file="res://assets/audio/test2_South African Singers_1.wav"
+dest_files=["res://.godot/imported/test2_South African Singers_1.wav-df3592a44766dd71dd2b58d892d20a5c.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

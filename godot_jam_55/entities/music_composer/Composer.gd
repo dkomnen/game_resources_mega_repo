@@ -1,51 +1,50 @@
+class_name Composer
 extends Node
 
-@onready
-var base_track = $BaseTrack
-@onready
-var hot_swap_1 = $HotSwap1
-@onready
-var hot_swap_2 = $HotSwap2
+@export var crossfade_time_in_seconds: float
+@export var crossfade_floor: float
 
-@export
-var track_transition_time_in_seconds: float
-@export
-var track_max_db: float
-@export
-var track_min_db: float
-var slot_1
+@onready var tracks := get_children()
 
-var current_time
-# Called when the node enters the scene tree for the first time.
+var current_streams := {}
+
 func _ready():
-	current_time = Time.get_ticks_msec()
-	hot_swap_1.volume_db = track_max_db
-	hot_swap_2.volume_db = track_min_db
-	slot_1 = true
+	mute_all_tracks()
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	if Input.is_action_just_pressed("ui_accept"):
-		var fadeout_track
-		var fadein_track
-		if slot_1:
-			fadeout_track = hot_swap_1
-			fadein_track = hot_swap_2
-		else:
-			fadeout_track = hot_swap_2
-			fadein_track = hot_swap_1
-		slot_1 = !slot_1
-		var tween1 = get_tree().create_tween()
-		tween1.tween_property(fadeout_track, "volume_db", track_min_db, track_transition_time_in_seconds)
-		var tween2 = get_tree().create_tween()
-		tween2.tween_property(fadein_track, "volume_db", track_max_db, track_transition_time_in_seconds)
-
-
-
-
-func _on_timer_timeout():
-	pass
-	# print("Hot swap 1 volume = " + str(hot_swap_1.volume_db) + "Hot swap 2 volume = " + str(hot_swap_2.volume_db))
+	for track in tracks:
+		current_streams[track] = track.initial_stream
+		track.initial_stream.set_volume_db(track.initial_stream.previous_volume)
 		
 
+func crossfade(stream_out: AudioStreamPlayer2D, stream_in: AudioStreamPlayer2D):
+	var tween_out = create_tween()
+	var tween_in = create_tween()
+
+	stream_out.save_volume()
+	stream_in.set_volume_db(crossfade_floor)
+
+	tween_out.tween_property(stream_out, "volume_db", crossfade_floor, crossfade_time_in_seconds)
+	tween_in.parallel().tween_property(stream_in, "volume_db", stream_in.previous_volume, crossfade_time_in_seconds)
+
+func _on_stream_selected(stream_index: int, changed_track: Node):
+	var new_stream = changed_track.streams[stream_index]
+	crossfade(current_streams[changed_track], new_stream)
+	current_streams[changed_track] = new_stream
+	print(changed_track.name, stream_index)
+
+
+func mute_all_tracks():
+	for track in tracks:
+		track.mute()
+
+func unmute_all_tracks():
+	for track in tracks:
+		track.unmute()
+
+func stop_all_tracks():
+	for track in tracks:
+		track.stop_all_streams()
+
+func play_all_tracks():
+	for track in tracks:
+		track.start_all_streams()
