@@ -12,13 +12,9 @@ func _ready():
 	for track in tracks:
 		var button := OptionButton.new()
 		streams_dropdowns.push_back(button)
-		button.item_selected.connect(_get_stream_name_from_id.bind(button))
+		button.item_selected.connect(composer._on_stream_selected.bind(track))
 
-		for stream_player in track.stream_players:
-			button.add_item(stream_player.name)
+		for stream in track.streams:
+			button.add_item(stream.name)
 			
 		dropdowns_parent.add_child(button)
-
-func _get_stream_name_from_id(id: int, button: OptionButton):
-	var stream_name := button.get_item_text(id)
-	composer.on_stream_selected(stream_name)

@@ -6,6 +6,7 @@
 [node name="ComposerTestEnv" type="Node2D"]
 
 [node name="Composer" parent="." instance=ExtResource("1_ypfqa")]
+crossfade_floor = -40.0
 
 [node name="UI" type="CanvasLayer" parent="." node_paths=PackedStringArray("dropdowns_parent")]
 script = ExtResource("2_7f7ts")
