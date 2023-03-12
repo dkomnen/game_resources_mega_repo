@@ -1,9 +1,46 @@
-[gd_scene load_steps=2 format=3 uid="uid://ia7iy2khibfx"]
+[gd_scene load_steps=6 format=3 uid="uid://ia7iy2khibfx"]
 
 [ext_resource type="PackedScene" uid="uid://bont1juejtf60" path="res://entities/music_composer/composer.tscn" id="1_f73af"]
+[ext_resource type="Texture2D" uid="uid://cvfibfh0721pu" path="res://icon.svg" id="2_0c4g3"]
+[ext_resource type="Script" path="res://entities/camera/CameraController.gd" id="3_ou4lm"]
+[ext_resource type="Script" path="res://entities/ui/GameUI.gd" id="4_6orir"]
+[ext_resource type="Texture2D" uid="uid://cme33p4qxllcf" path="res://assets/ui/cursor_default.png" id="4_hd30l"]
 
 [node name="Main" type="Node2D"]
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Composer" parent="." instance=ExtResource("1_f73af")]
 
-[node name="Composer" parent="Sprite2D" instance=ExtResource("1_f73af")]
+[node name="NodeA" type="Sprite2D" parent="."]
+position = Vector2(-433, 197)
+texture = ExtResource("2_0c4g3")
+
+[node name="NodeB" type="Sprite2D" parent="."]
+position = Vector2(-450, -248)
+texture = ExtResource("2_0c4g3")
+
+[node name="NodeC" type="Sprite2D" parent="."]
+position = Vector2(497, -239)
+texture = ExtResource("2_0c4g3")
+
+[node name="NodeD" type="Sprite2D" parent="."]
+position = Vector2(-3, -126)
+texture = ExtResource("2_0c4g3")
+
+[node name="NodeE" type="Sprite2D" parent="."]
+position = Vector2(372, 198)
+texture = ExtResource("2_0c4g3")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(-568, -338)
+anchor_mode = 0
+script = ExtResource("3_ou4lm")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+script = ExtResource("4_6orir")
+
+[node name="MouseCursor" type="Node2D" parent="CanvasLayer"]
+position = Vector2(-568, -338)
+
+[node name="MouseCursorSprite" type="Sprite2D" parent="CanvasLayer/MouseCursor"]
+position = Vector2(12, 14)
+texture = ExtResource("4_hd30l")

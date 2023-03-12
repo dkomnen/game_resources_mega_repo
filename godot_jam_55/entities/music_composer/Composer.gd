@@ -45,6 +45,7 @@ func _process(delta):
 
 
 func _on_timer_timeout():
-	print("Hot swap 1 volume = " + str(hot_swap_1.volume_db) + "Hot swap 2 volume = " + str(hot_swap_2.volume_db))
+	pass
+	# print("Hot swap 1 volume = " + str(hot_swap_1.volume_db) + "Hot swap 2 volume = " + str(hot_swap_2.volume_db))
 		
 
