@@ -1,31 +1,33 @@
-[gd_scene load_steps=6 format=3 uid="uid://bont1juejtf60"]
+[gd_scene load_steps=6 format=3 uid="uid://bifpimobeno2m"]
 
 [ext_resource type="Script" path="res://entities/music_composer/Composer.gd" id="1_rpcqw"]
 [ext_resource type="AudioStream" uid="uid://cao320rbx7nsm" path="res://assets/audio/test_Basses.wav" id="2_nthhv"]
-[ext_resource type="AudioStream" uid="uid://r4mqm4jcdiuo" path="res://assets/audio/test_Cellos.wav" id="3_vtfgc"]
-[ext_resource type="AudioStream" uid="uid://kogf3corm16" path="res://assets/audio/test_Violins_2.wav" id="4_rr03x"]
+[ext_resource type="AudioStream" uid="uid://72dibuji71l6" path="res://assets/audio/test_Violins 1.wav" id="4_86p0x"]
+[ext_resource type="AudioStream" uid="uid://bl5cvpa54ph7u" path="res://assets/audio/test_Violas.wav" id="4_als64"]
+[ext_resource type="AudioStream" uid="uid://cx4mgxj7n5nnt" path="res://assets/audio/test_Violins 2.wav" id="5_ydlhx"]
 
-[sub_resource type="AudioStreamPolyphonic" id="AudioStreamPolyphonic_7s4u4"]
-
-[node name="Composer" type="Node"]
+[node name="Composer" type="Node" node_paths=PackedStringArray("hot_swap_1", "hot_swap_2")]
 script = ExtResource("1_rpcqw")
-track_transition_time_in_seconds = 1.0
+crossfade_time_in_seconds = 1.0
 track_max_db = 10.0
 track_min_db = -40.0
+hot_swap_1 = NodePath("Harmony")
+hot_swap_2 = NodePath("Rhythm")
 
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
-stream = SubResource("AudioStreamPolyphonic_7s4u4")
-
-[node name="BaseTrack" type="AudioStreamPlayer2D" parent="."]
+[node name="Bass" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("2_nthhv")
 autoplay = true
 
-[node name="HotSwap1" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("3_vtfgc")
+[node name="Harmony" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_als64")
 autoplay = true
 
-[node name="HotSwap2" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("4_rr03x")
+[node name="Melody" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_86p0x")
+autoplay = true
+
+[node name="Rhythm" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_ydlhx")
 autoplay = true
 
 [node name="Timer" type="Timer" parent="."]

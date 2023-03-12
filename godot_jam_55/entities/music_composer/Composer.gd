@@ -1,22 +1,28 @@
 extends Node
 
 @onready
-var base_track = $BaseTrack
+var bass_track = $Bass
 @onready
-var hot_swap_1 = $HotSwap1
+var harm_track = $Harmony
 @onready
-var hot_swap_2 = $HotSwap2
+var mel_track = $Melody
+@onready
+var rhythm_track = $Rhythm
 
 @export
-var track_transition_time_in_seconds: float
+var crossfade_time_in_seconds: float
 @export
 var track_max_db: float
 @export
 var track_min_db: float
+
+@export var hot_swap_1: AudioStreamPlayer2D
+@export var hot_swap_2: AudioStreamPlayer2D
+
 var slot_1
 
 var current_time
-# Called when the node enters the scene tree for the first time.
+
 func _ready():
 	current_time = Time.get_ticks_msec()
 	hot_swap_1.volume_db = track_max_db
@@ -24,11 +30,10 @@ func _ready():
 	slot_1 = true
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	if Input.is_action_just_pressed("ui_accept"):
-		var fadeout_track
-		var fadein_track
+		var fadeout_track: AudioStreamPlayer2D
+		var fadein_track: AudioStreamPlayer2D
 		if slot_1:
 			fadeout_track = hot_swap_1
 			fadein_track = hot_swap_2
@@ -36,12 +41,14 @@ func _process(delta):
 			fadeout_track = hot_swap_2
 			fadein_track = hot_swap_1
 		slot_1 = !slot_1
-		var tween1 = get_tree().create_tween()
-		tween1.tween_property(fadeout_track, "volume_db", track_min_db, track_transition_time_in_seconds)
-		var tween2 = get_tree().create_tween()
-		tween2.tween_property(fadein_track, "volume_db", track_max_db, track_transition_time_in_seconds)
 
+		fadein_track.volume_db = -20
 
+		var tween1 = create_tween()
+		var tween2 = create_tween()
+
+		tween1.tween_property(fadeout_track, "volume_db", track_min_db, crossfade_time_in_seconds)
+		tween2.tween_property(fadein_track, "volume_db", track_max_db, crossfade_time_in_seconds)
 
 
 func _on_timer_timeout():
