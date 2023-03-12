@@ -18,7 +18,7 @@ func _process(delta):
 func _input(event):
 	if event is InputEventMouseMotion:
 		panning_direction = Vector2(0,0)
-		print(str(get_viewport().size.x) + " - " + str(event.position.x))
+		GlobalScript.debug_print(str(get_viewport().size.x) + " - " + str(event.position.x), GlobalScript.LOG_LEVEL.INFO)
 		$MouseCursor.position = event.position
 		if event.position.x <= 0:
 			panning_direction.x = -1

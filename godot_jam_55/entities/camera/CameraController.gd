@@ -20,8 +20,6 @@ func _input(event):
 		if event.button_index == MOUSE_BUTTON_WHEEL_UP and event.pressed:
 			zoom.x = min(zoom.x + zoom_intensity, max_allowed_zoom)
 			zoom.y = min(zoom.y + zoom_intensity, max_allowed_zoom)
-			print("Wheel up")
 		if event.button_index == MOUSE_BUTTON_WHEEL_DOWN and event.pressed:
 			zoom.x = max(zoom.x - zoom_intensity, min_allowed_zoom)
 			zoom.y = max(zoom.y - zoom_intensity, min_allowed_zoom)
-			print("Wheel down")
