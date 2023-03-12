@@ -1,37 +1,62 @@
-[gd_scene load_steps=6 format=3 uid="uid://bifpimobeno2m"]
+[gd_scene load_steps=12 format=3 uid="uid://bont1juejtf60"]
 
 [ext_resource type="Script" path="res://entities/music_composer/Composer.gd" id="1_rpcqw"]
+[ext_resource type="Script" path="res://entities/music_composer/audio_track.gd" id="2_lym37"]
 [ext_resource type="AudioStream" uid="uid://cao320rbx7nsm" path="res://assets/audio/test_Basses.wav" id="2_nthhv"]
-[ext_resource type="AudioStream" uid="uid://72dibuji71l6" path="res://assets/audio/test_Violins 1.wav" id="4_86p0x"]
+[ext_resource type="AudioStream" path="res://assets/audio/test_Violins 1.wav" id="4_86p0x"]
+[ext_resource type="Script" path="res://entities/music_composer/volume_keeper.gd" id="4_aaa8i"]
 [ext_resource type="AudioStream" uid="uid://bl5cvpa54ph7u" path="res://assets/audio/test_Violas.wav" id="4_als64"]
-[ext_resource type="AudioStream" uid="uid://cx4mgxj7n5nnt" path="res://assets/audio/test_Violins 2.wav" id="5_ydlhx"]
+[ext_resource type="AudioStream" uid="uid://d4d0u5hc8wnyd" path="res://assets/audio/test2_Peruvian Panpipes.wav" id="5_suesg"]
+[ext_resource type="AudioStream" path="res://assets/audio/test_Violins 2.wav" id="5_ydlhx"]
+[ext_resource type="AudioStream" uid="uid://bjc62oed532xq" path="res://assets/audio/test2_South African Singers.wav" id="7_af57k"]
+[ext_resource type="AudioStream" uid="uid://c70eggvt3moml" path="res://assets/audio/test2_South African Singers_2.wav" id="9_ybthq"]
+[ext_resource type="AudioStream" uid="uid://dtjgk15i578a3" path="res://assets/audio/test2_African Kit.wav" id="11_o32ge"]
 
-[node name="Composer" type="Node" node_paths=PackedStringArray("hot_swap_1", "hot_swap_2")]
+[node name="Composer" type="Node"]
 script = ExtResource("1_rpcqw")
 crossfade_time_in_seconds = 1.0
-track_max_db = 10.0
 track_min_db = -40.0
-hot_swap_1 = NodePath("Harmony")
-hot_swap_2 = NodePath("Rhythm")
 
-[node name="Bass" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("2_nthhv")
-autoplay = true
+[node name="MelodyTrack" type="Node" parent="."]
+script = ExtResource("2_lym37")
 
-[node name="Harmony" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("4_als64")
-autoplay = true
-
-[node name="Melody" type="AudioStreamPlayer2D" parent="."]
+[node name="Strings" type="AudioStreamPlayer2D" parent="MelodyTrack"]
 stream = ExtResource("4_86p0x")
-autoplay = true
+script = ExtResource("4_aaa8i")
 
-[node name="Rhythm" type="AudioStreamPlayer2D" parent="."]
+[node name="Panpipes" type="AudioStreamPlayer2D" parent="MelodyTrack"]
+stream = ExtResource("5_suesg")
+script = ExtResource("4_aaa8i")
+
+[node name="HarmonyTrack" type="Node" parent="."]
+script = ExtResource("2_lym37")
+
+[node name="Strings" type="AudioStreamPlayer2D" parent="HarmonyTrack"]
+stream = ExtResource("4_als64")
+script = ExtResource("4_aaa8i")
+
+[node name="AfricanSingers1" type="AudioStreamPlayer2D" parent="HarmonyTrack"]
+stream = ExtResource("7_af57k")
+script = ExtResource("4_aaa8i")
+
+[node name="BassTrack" type="Node" parent="."]
+script = ExtResource("2_lym37")
+
+[node name="Strings" type="AudioStreamPlayer2D" parent="BassTrack"]
+stream = ExtResource("2_nthhv")
+script = ExtResource("4_aaa8i")
+
+[node name="AfricanSingers2" type="AudioStreamPlayer2D" parent="BassTrack"]
+stream = ExtResource("9_ybthq")
+script = ExtResource("4_aaa8i")
+
+[node name="RhythmTrack" type="Node" parent="."]
+script = ExtResource("2_lym37")
+
+[node name="Strings" type="AudioStreamPlayer2D" parent="RhythmTrack"]
 stream = ExtResource("5_ydlhx")
-autoplay = true
+script = ExtResource("4_aaa8i")
 
-[node name="Timer" type="Timer" parent="."]
-wait_time = 0.2
-autostart = true
-
-[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[node name="AfricanKit" type="AudioStreamPlayer2D" parent="RhythmTrack"]
+stream = ExtResource("11_o32ge")
+script = ExtResource("4_aaa8i")

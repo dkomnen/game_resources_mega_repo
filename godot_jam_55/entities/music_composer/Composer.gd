@@ -1,57 +1,45 @@
+class_name Composer
 extends Node
 
-@onready
-var bass_track = $Bass
-@onready
-var harm_track = $Harmony
-@onready
-var mel_track = $Melody
-@onready
-var rhythm_track = $Rhythm
+@onready var tracks = get_children()
 
 @export
 var crossfade_time_in_seconds: float
 @export
-var track_max_db: float
-@export
 var track_min_db: float
 
-@export var hot_swap_1: AudioStreamPlayer2D
-@export var hot_swap_2: AudioStreamPlayer2D
-
-var slot_1
-
-var current_time
-
 func _ready():
-	current_time = Time.get_ticks_msec()
-	hot_swap_1.volume_db = track_max_db
-	hot_swap_2.volume_db = track_min_db
-	slot_1 = true
+	mute_all_tracks()
+	stop_all_tracks()
 
+func crossfade(stream_out: AudioStreamPlayer, stream_in: AudioStreamPlayer):
+	var tween_out = create_tween()
+	var tween_in = create_tween()
 
-func _process(delta):
-	if Input.is_action_just_pressed("ui_accept"):
-		var fadeout_track: AudioStreamPlayer2D
-		var fadein_track: AudioStreamPlayer2D
-		if slot_1:
-			fadeout_track = hot_swap_1
-			fadein_track = hot_swap_2
-		else:
-			fadeout_track = hot_swap_2
-			fadein_track = hot_swap_1
-		slot_1 = !slot_1
+	stream_out.previous_volume = stream_out.volume_db
 
-		fadein_track.volume_db = -20
+	tween_out.tween_property(stream_out, "volume_db", track_min_db, crossfade_time_in_seconds)
+	tween_in.parallel().tween_property(stream_in, "volume_db", stream_in.previous_volume, crossfade_time_in_seconds)
 
-		var tween1 = create_tween()
-		var tween2 = create_tween()
+func on_stream_selected(stream_name: String):
+	print(stream_name)
 
-		tween1.tween_property(fadeout_track, "volume_db", track_min_db, crossfade_time_in_seconds)
-		tween2.tween_property(fadein_track, "volume_db", track_max_db, crossfade_time_in_seconds)
+func mute_all_tracks():
+	for track in tracks:
+		for stream_player in track.stream_players:
+			stream_player.set_volume_db(0)
 
+func unmute_all_tracks():
+	for track in tracks:
+		for stream_player in track.stream_players:
+			stream_player.set_volume_db(0)
 
-func _on_timer_timeout():
-	print("Hot swap 1 volume = " + str(hot_swap_1.volume_db) + "Hot swap 2 volume = " + str(hot_swap_2.volume_db))
-		
+func stop_all_tracks():
+	for track in tracks:
+		for stream_player in track.stream_players:
+			stream_player.stop()
 
+func play_all_tracks():
+	for track in tracks:
+		for stream_player in track.stream_players:
+			stream_player.play()
