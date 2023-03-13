@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://siwren6na6gt"]
+[gd_scene load_steps=4 format=3 uid="uid://bje8b66tnvp2e"]
 
 [ext_resource type="Script" path="res://entities/settlement/Settlement.gd" id="1_whdv0"]
 [ext_resource type="Texture2D" uid="uid://cvfibfh0721pu" path="res://icon.svg" id="2_e2akq"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://ddwmkl4uxaukx"]
+[gd_scene load_steps=4 format=3 uid="uid://ck8g2eqeo3k8u"]
 
 [ext_resource type="Script" path="res://entities/unit/Unit.gd" id="1_5noar"]
 [ext_resource type="Texture2D" uid="uid://fy3oixls6doq" path="res://assets/unit_gfx/unit_sprites.png" id="1_r0pkk"]
