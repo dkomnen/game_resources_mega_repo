@@ -4,6 +4,7 @@
 
 [resource]
 shader = ExtResource("1_ed5pt")
+shader_parameter/wave_on = false
 shader_parameter/wave_color = Color(1, 0, 0, 1)
 shader_parameter/wave_speed = 10.0
 shader_parameter/wave_thickness = 0.5
