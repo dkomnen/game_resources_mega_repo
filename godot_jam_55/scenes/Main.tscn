@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://ia7iy2khibfx"]
+[gd_scene load_steps=18 format=3 uid="uid://ia7iy2khibfx"]
 
 [ext_resource type="Texture2D" uid="uid://do0yd0vij8syv" path="res://assets/tilemap/fantasyhextiles_v3.png" id="1_6utnk"]
 [ext_resource type="PackedScene" uid="uid://bont1juejtf60" path="res://entities/music_composer/composer.tscn" id="1_f73af"]
@@ -8,10 +8,14 @@
 [ext_resource type="Script" path="res://entities/camera/CameraController.gd" id="3_ou4lm"]
 [ext_resource type="Script" path="res://entities/ui/GameUI.gd" id="4_6orir"]
 [ext_resource type="Texture2D" uid="uid://cme33p4qxllcf" path="res://assets/ui/cursor_default.png" id="4_hd30l"]
+[ext_resource type="Shader" path="res://entities/spell_fx/soundwave.gdshader" id="5_gdiwn"]
+[ext_resource type="Texture2D" uid="uid://bov041ljkgxix" path="res://assets/tilemap/Artboard 1.png" id="6_vxg8y"]
+[ext_resource type="Script" path="res://scenes/map_fx_controller.gd" id="7_hv7ep"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_d68hk"]
 texture = ExtResource("1_6utnk")
 texture_region_size = Vector2i(32, 48)
+0:0/next_alternative_id = 2
 0:0/0 = 0
 0:0/0/texture_origin = Vector2i(0, 8)
 1:0/0 = 0
@@ -144,12 +148,27 @@ texture_region_size = Vector2i(32, 48)
 6:2/0 = 0
 6:2/0/texture_origin = Vector2i(0, 8)
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jeel2"]
+shader = ExtResource("5_gdiwn")
+shader_parameter/wave_on = false
+shader_parameter/wave_color = Color(1, 0.166667, 0, 1)
+shader_parameter/wave_speed = 5.0
+shader_parameter/wave_thickness = 0.05
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_awj1r"]
+texture = ExtResource("6_vxg8y")
+texture_region_size = Vector2i(32, 30)
+0:0/0 = 0
+0:0/0/texture_origin = Vector2i(0, -1)
+0:0/0/material = SubResource("ShaderMaterial_jeel2")
+
 [sub_resource type="TileSet" id="TileSet_bhdtl"]
 tile_shape = 3
 tile_offset_axis = 1
 tile_size = Vector2i(32, 28)
 sources/0 = SubResource("TileSetAtlasSource_d68hk")
 sources/5 = SubResource("TileSetAtlasSource_nht3m")
+sources/8 = SubResource("TileSetAtlasSource_awj1r")
 
 [sub_resource type="Curve2D" id="Curve2D_5wjbm"]
 _data = {
@@ -192,6 +211,14 @@ layer_1/y_sort_enabled = true
 layer_1/y_sort_origin = 0
 layer_1/z_index = 0
 layer_1/tile_data = PackedInt32Array(524286, 65541, 0, 524285, 262149, 0, 589822, 131077, 0, 589823, 131077, 0, 589824, 131077, 0, 589825, 196613, 0, 655363, 65541, 0, 655361, 5, 1, 655360, 262149, 0, 720898, 393221, 0, 655364, 65541, 1, 589829, 65541, 0, 589830, 196613, 0, 524294, 65541, 0, 524293, 196613, 1, 524292, 131077, 0, 458755, 262149, 0, 458756, 196613, 0, 393219, 131077, 0, 393218, 131077, 0, 262146, 196613, 0, 262145, 262149, 0, 327682, 196613, 0, 327681, 262149, 0, 655365, 131077, 0, 720902, 131077, 0, 720903, 131077, 0, 786440, 196613, 0, 786439, 262149, 0, 786441, 327685, 0, 851973, 65536, 4, 655367, 65536, 4, 655362, 65536, 4, 327680, 131072, 4, 262143, 131072, 4, 262147, 131072, 4)
+layer_2/name = "FX"
+layer_2/enabled = true
+layer_2/modulate = Color(1, 1, 1, 1)
+layer_2/y_sort_enabled = true
+layer_2/y_sort_origin = 0
+layer_2/z_index = 0
+layer_2/tile_data = PackedInt32Array(786437, 8, 0, 786436, 8, 0, 851972, 8, 0)
+script = ExtResource("7_hv7ep")
 
 [node name="Composer" parent="." instance=ExtResource("1_f73af")]
 
