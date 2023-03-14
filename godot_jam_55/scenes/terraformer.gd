@@ -5,7 +5,7 @@ extends TileMap
 func _input(event):
 	# hold space and click
 	if event is InputEventMouseButton and Input.is_action_pressed("ui_accept"):
-		var clicked_tile_coords := local_to_map(to_local(event.global_position))
+		var clicked_tile_coords := local_to_map(to_local(get_global_mouse_position()))
 		print(clicked_tile_coords) #wrong... maybe the custom coursor is fucking this up?
 
 		#places an emmiter
