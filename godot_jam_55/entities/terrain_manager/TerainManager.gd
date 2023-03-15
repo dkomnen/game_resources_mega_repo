@@ -4,11 +4,15 @@ extends TileMap
 
 var runtime_generated_tile_ids: Array = []
 var last_updated_tile: Vector2i
+var custom_data_layers: Array = ["hex_data", "population"]  # This will only be applied to layer 0 for now
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	create_packed_scenes_from_atlas(0)
+	for idx in range(custom_data_layers.size()):
+		tileset.add_custom_data_layer(0)
+		tileset.set_custom_data_layer_name(idx, custom_data_layers[idx])
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -56,10 +60,28 @@ func create_packed_scenes_from_atlas(atlas_source_id: int):
 			runtime_generated_tile_ids.append(new_id)
 
 
+func set_tile_data(tile_coordinates: Vector2i, data_key: String, data: Variant) -> void:
+	var selected_tile: TileData = get_cell_tile_data(0, tile_coordinates)
+	if selected_tile == null:
+		return
+	selected_tile.set_custom_data(data_key, data)
+
+
+func get_tile_data(tile_coordinates: Vector2i, data_key: String) -> Variant:
+	var selected_tile: TileData = get_cell_tile_data(0, tile_coordinates)
+	if selected_tile == null:
+		return null
+	return selected_tile.get_custom_data(data_key)
+
+
 func _input(event):
 	if event is InputEventMouseButton and Input.is_action_pressed("test_key_2"):
 		var clicked_tile_coords = local_to_map(to_local(get_global_mouse_position()))
-		erase_cell(0, clicked_tile_coords)
+		set_tile_data(clicked_tile_coords, "hex_data", 5)
+		set_tile_data(clicked_tile_coords, "population", 7)
+		print("hex_data = " + str(get_tile_data(clicked_tile_coords, "hex_data")))
+		print("population = " + str(get_tile_data(clicked_tile_coords, "population")))
+		# erase_cell(0, clicked_tile_coords)
 
 	if event is InputEventMouseButton and Input.is_action_pressed("test_key"):
 		if runtime_generated_tile_ids.size() == 0:
